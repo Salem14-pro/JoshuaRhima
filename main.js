@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Only apply custom cursor on non-touch devices
     if (window.matchMedia("(pointer: fine)").matches) {
         document.addEventListener('mousemove', (e) => {
+            cursor.style.opacity = '1';
             cursor.style.left = e.clientX + 'px';
             cursor.style.top = e.clientY + 'px';
         });
