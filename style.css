@@ -925,9 +925,16 @@ body.nav-open {
     .slider-container { min-height: 500px; }
     .slide { padding: 0 0.5rem; }
     .slide-image { height: 200px; }
+    .slider-nav {
+        gap: 0.5rem;
+    }
     .slider-btn {
         width: 36px;
         height: 36px;
+    }
+    .dot {
+        width: 20px;
+        height: 24px;
     }
     
     /* Page-specific overrides */
