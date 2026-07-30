@@ -234,7 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 5. Mobile Menu Toggle
+    // 5. Mobile Menu Toggle with body scroll lock
     const menuToggle = document.querySelector('.menu-toggle');
     const navMenu = document.querySelector('.nav-menu');
     
@@ -242,6 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
         menuToggle.addEventListener('click', () => {
             menuToggle.classList.toggle('active');
             navMenu.classList.toggle('active');
+            document.body.classList.toggle('nav-open');
         });
         
         // Close menu when a link is clicked
@@ -250,8 +251,42 @@ document.addEventListener('DOMContentLoaded', () => {
             link.addEventListener('click', () => {
                 menuToggle.classList.remove('active');
                 navMenu.classList.remove('active');
+                document.body.classList.remove('nav-open');
             });
         });
+    }
+
+    // 6. Touch swipe support for the slider
+    if (sliderContainer) {
+        let touchStartX = 0;
+        let touchEndX = 0;
+        const swipeThreshold = 50;
+
+        sliderContainer.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        sliderContainer.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            const diff = touchStartX - touchEndX;
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    // Swipe left → next slide
+                    const nextBtn = sliderContainer.querySelector('.next-btn');
+                    if (nextBtn) nextBtn.click();
+                } else {
+                    // Swipe right → prev slide
+                    const prevBtn = sliderContainer.querySelector('.prev-btn');
+                    if (prevBtn) prevBtn.click();
+                }
+            }
+        }, { passive: true });
+    }
+
+    // 7. Adapt flicker instruction text for touch devices
+    const hoverInstruction = document.querySelector('.hover-instruction');
+    if (hoverInstruction && !window.matchMedia('(pointer: fine)').matches) {
+        hoverInstruction.textContent = 'TAP TO REVEAL';
     }
 });
 
