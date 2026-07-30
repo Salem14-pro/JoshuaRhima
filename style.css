@@ -665,7 +665,7 @@ a:hover {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
     padding-top: 5rem;
 }
 
@@ -819,7 +819,6 @@ body.nav-open {
         padding-top: 5rem;
         padding-left: 2rem;
         padding-right: 2rem;
-        justify-content: flex-start;
     }
 }
 
