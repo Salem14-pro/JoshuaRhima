@@ -66,17 +66,21 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Unlock audio context on any user interaction globally
+        // Unlock audio context on any user interaction globally (including mouse movement)
         const unlockAudio = () => {
             initAudio();
             document.removeEventListener('click', unlockAudio);
             document.removeEventListener('touchstart', unlockAudio);
             document.removeEventListener('keydown', unlockAudio);
+            document.removeEventListener('mousemove', unlockAudio);
+            document.removeEventListener('pointerdown', unlockAudio);
         };
         
         document.addEventListener('click', unlockAudio);
         document.addEventListener('touchstart', unlockAudio);
         document.addEventListener('keydown', unlockAudio);
+        document.addEventListener('mousemove', unlockAudio);
+        document.addEventListener('pointerdown', unlockAudio);
 
         function playNoise() {
             if (!audioCtx) return;
