@@ -451,9 +451,6 @@ a:hover {
 }
 
 .slider-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
     background: transparent;
     border: 1px solid var(--border-color);
     color: var(--text-color);
@@ -463,13 +460,14 @@ a:hover {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    z-index: 10;
-    transition: border-color 0.3s ease, color 0.3s ease;
+    flex-shrink: 0;
+    transition: border-color 0.3s ease, color 0.3s ease, background-color 0.3s ease;
 }
 
 .slider-btn:hover {
     border-color: var(--text-color);
-    color: var(--muted-color);
+    background-color: var(--text-color);
+    color: var(--bg-color);
 }
 
 .slider-btn svg {
@@ -478,16 +476,21 @@ a:hover {
     height: 16px;
 }
 
-.prev-btn { left: 0; }
-.next-btn { right: 0; }
+/* Slider Navigation Bar — arrows + dots in one row */
+.slider-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2.5rem;
+    width: 100%;
+    max-width: 1000px;
+}
 
 .slider-dots {
-    position: absolute;
-    bottom: -2rem;
-    left: 50%;
-    transform: translateX(-50%);
     display: flex;
     gap: 0;
+    align-items: center;
 }
 
 .dot {
@@ -922,7 +925,6 @@ body.nav-open {
     .slider-container { min-height: 500px; }
     .slide { padding: 0 0.5rem; }
     .slide-image { height: 200px; }
-    .slider-dots { bottom: -1rem; }
     .slider-btn {
         width: 36px;
         height: 36px;
