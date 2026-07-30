@@ -60,6 +60,15 @@ document.addEventListener('DOMContentLoaded', () => {
         function initAudio() {
             if (!audioCtx) {
                 audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                
+                // iOS Safari workaround: play a silent sound immediately on user interaction to unlock the audio context
+                const silentOsc = audioCtx.createOscillator();
+                const silentGain = audioCtx.createGain();
+                silentGain.gain.value = 0;
+                silentOsc.connect(silentGain);
+                silentGain.connect(audioCtx.destination);
+                silentOsc.start();
+                silentOsc.stop(audioCtx.currentTime + 0.001);
             }
             if (audioCtx.state === 'suspended') {
                 audioCtx.resume().catch(() => {});
