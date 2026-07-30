@@ -186,9 +186,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const sliderContainer = document.querySelector('.slider-container');
     if (sliderContainer) {
         const slides = sliderContainer.querySelectorAll('.slide');
-        const prevBtn = sliderContainer.querySelector('.prev-btn');
-        const nextBtn = sliderContainer.querySelector('.next-btn');
-        const dotsContainer = sliderContainer.querySelector('.slider-dots');
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
+        const dotsContainer = document.querySelector('.slider-dots');
         let currentSlide = 0;
 
         // Create dots
@@ -276,11 +276,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (Math.abs(diff) > swipeThreshold) {
                 if (diff > 0) {
                     // Swipe left → next slide
-                    const nextBtn = sliderContainer.querySelector('.next-btn');
+                    const nextBtn = document.querySelector('.next-btn');
                     if (nextBtn) nextBtn.click();
                 } else {
                     // Swipe right → prev slide
-                    const prevBtn = sliderContainer.querySelector('.prev-btn');
+                    const prevBtn = document.querySelector('.prev-btn');
                     if (prevBtn) prevBtn.click();
                 }
             }
