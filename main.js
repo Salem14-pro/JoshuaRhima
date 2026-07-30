@@ -162,24 +162,21 @@ document.addEventListener('DOMContentLoaded', () => {
             }, frameDuration);
         }
         
-        // Hover events
-        flickerSection.addEventListener('mouseenter', () => {
-            initAudio();
-            stopFlicker();
-            playFlicker();
-        });
-        
-        flickerSection.addEventListener('mouseleave', () => {
-            stopFlicker();
-        });
-        
-        // For mobile (touch), start on touch
-        flickerSection.addEventListener('touchstart', (e) => {
-            initAudio();
-            if(!flickerSection.classList.contains('is-playing')){
-                playFlicker();
-            }
-        });
+        // Use IntersectionObserver to trigger on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    initAudio();
+                    if (!flickerSection.classList.contains('is-playing')) {
+                        playFlicker();
+                    }
+                } else {
+                    stopFlicker();
+                }
+            });
+        }, { threshold: 0.5 }); // Trigger when 50% visible
+
+        observer.observe(flickerSection);
     }
 
     // 4. How I Work Slider Logic
@@ -287,10 +284,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { passive: true });
     }
 
-    // 7. Adapt flicker instruction text for touch devices
-    const hoverInstruction = document.querySelector('.hover-instruction');
-    if (hoverInstruction && !window.matchMedia('(pointer: fine)').matches) {
-        hoverInstruction.textContent = 'TAP TO REVEAL';
-    }
 });
 

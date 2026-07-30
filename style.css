@@ -306,21 +306,6 @@ a:hover {
     cursor: pointer;
 }
 
-.hover-instruction {
-    position: absolute;
-    font-size: clamp(0.8rem, 2vw, 1.2rem);
-    letter-spacing: 0.2em;
-    color: var(--muted-color);
-    text-transform: uppercase;
-    transition: opacity 0.3s ease;
-    z-index: 10;
-    pointer-events: none;
-    font-weight: 600;
-}
-
-.flicker-section.is-playing .hover-instruction {
-    opacity: 0;
-}
 
 /* How I Work Slider */
 .how-i-work-section {
@@ -953,10 +938,6 @@ body.nav-open {
 
     /* Flicker section */
     .flicker-section { height: 40vh; }
-    .hover-instruction {
-        font-size: 0.75rem;
-        letter-spacing: 0.15em;
-    }
 
     /* Nav menu */
     .nav-menu a {
